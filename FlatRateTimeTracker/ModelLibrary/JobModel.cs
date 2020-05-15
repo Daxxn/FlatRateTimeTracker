@@ -9,10 +9,9 @@ namespace ModelLibrary
     public class JobModel
     {
         #region - Fields
-        public string Name { get; set; }
+        public JobType Type { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public TimeSpan JobTime { get; set; }
         #endregion
 
         #region - Constructors
@@ -24,7 +23,12 @@ namespace ModelLibrary
         #endregion
 
         #region - Properties
-
+        public TimeSpan JobTime
+        {
+            get
+            {
+                return StartTime - EndTime;
+            }
         #endregion
     }
 }
