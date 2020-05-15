@@ -29,6 +29,7 @@ namespace ModelLibrary
             {
                 return StartTime - EndTime;
             }
+        }
         #endregion
     }
 }

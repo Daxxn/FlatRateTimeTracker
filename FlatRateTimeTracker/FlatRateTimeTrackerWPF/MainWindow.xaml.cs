@@ -27,6 +27,17 @@ namespace FlatRateTimeTrackerWPF
         {
             InitializeComponent();
             JobController = new JobController();
+            JobTypeComboBox.ItemsSource = Enum.GetNames(typeof(JobType));
+        }
+
+        private void StartJob_Click(Object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void StartJob_KeyUp(Object sender, KeyEventArgs e)
+        {
+
         }
     }
 }
