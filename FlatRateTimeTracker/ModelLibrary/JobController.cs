@@ -10,6 +10,7 @@ namespace ModelLibrary
     {
         #region - Fields
         public List<JobModel> AllJobs { get; set; }
+        public JobModel CurrentJob { get; set; }
         #endregion
 
         #region - Constructors
@@ -17,7 +18,29 @@ namespace ModelLibrary
         #endregion
 
         #region - Methods
+        public void StartJob(JobType type)
+        {
+            if (CurrentJob != null)
+            {
+                CurrentJob = new JobModel()
+                {
+                    StartTime = DateTime.Now,
+                    EndTime = DateTime.Now,
+                    Type = type,
+                };
+            }
+            else
+            {
+                EndJob();
+            }
+        }
 
+        public void EndJob()
+        {
+            CurrentJob.EndTime = DateTime.Now;
+            AllJobs.Add(CurrentJob);
+            CurrentJob = null;
+        }
         #endregion
 
         #region - Properties

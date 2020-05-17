@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FlatRateTimeTrackerWPF.ViewModels;
 using ModelLibrary;
 
 namespace FlatRateTimeTrackerWPF
@@ -23,21 +24,24 @@ namespace FlatRateTimeTrackerWPF
     {
         public JobController JobController { get; set; }
 
-        public MainWindow()
+        public MainWindow(MainViewModel vm)
         {
             InitializeComponent();
+            DataContext = vm;
             JobController = new JobController();
             JobTypeComboBox.ItemsSource = Enum.GetNames(typeof(JobType));
+
         }
 
-        private void StartJob_Click(Object sender, RoutedEventArgs e)
+        public void InitializeEvents(MainViewModel vm)
         {
-
+            StartJob.Click += vm.StartJobClickEvent;
         }
 
         private void StartJob_KeyUp(Object sender, KeyEventArgs e)
         {
-
+            var vm = DataContext as MainViewModel;
+            vm.StartJobKeyEvent(sender, e);
         }
     }
 }

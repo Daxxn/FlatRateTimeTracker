@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using FlatRateTimeTrackerWPF.ViewModels;
 
 namespace FlatRateTimeTrackerWPF
 {
@@ -13,5 +14,12 @@ namespace FlatRateTimeTrackerWPF
     /// </summary>
     public partial class App : Application
     {
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            MainWindow main = new MainWindow(new MainViewModel());
+            base.OnStartup(e);
+            main.Show();
+        }
     }
 }
