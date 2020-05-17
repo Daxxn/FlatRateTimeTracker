@@ -1,26 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace ModelLibrary
 {
-    public class JobController
+    public class JobController : ModelBase
     {
         #region - Fields
-        public List<JobModel> AllJobs { get; set; }
-        public JobModel CurrentJob { get; set; }
+        private List<JobModel> _allJobs;
+        private JobModel _currentJob;
         #endregion
 
         #region - Constructors
-
+        public JobController( )
+        {
+            AllJobs = new List<JobModel>();
+        }
         #endregion
 
         #region - Methods
         public void StartJob(JobType type)
         {
-            if (CurrentJob != null)
+            if (CurrentJob is null)
             {
                 CurrentJob = new JobModel()
                 {
@@ -32,7 +38,18 @@ namespace ModelLibrary
             else
             {
                 EndJob();
+                StartJob(type);
             }
+        }
+
+        public void StartJob( JobType type, DateTime startTime )
+        {
+            CurrentJob = new JobModel()
+            {
+                StartTime = startTime,
+                EndTime = DateTime.Now,
+                Type = type
+            };
         }
 
         public void EndJob()
@@ -69,6 +86,26 @@ namespace ModelLibrary
                     }
                 }
                 return output;
+            }
+        }
+
+        public List<JobModel> AllJobs
+        {
+            get { return _allJobs; }
+            set
+            {
+                _allJobs = value;
+                OnPropertyChanged(nameof(AllJobs));
+            }
+        }
+
+        public JobModel CurrentJob
+        {
+            get { return _currentJob; }
+            set
+            {
+                _currentJob = value;
+                OnPropertyChanged(nameof(CurrentJob));
             }
         }
         #endregion
