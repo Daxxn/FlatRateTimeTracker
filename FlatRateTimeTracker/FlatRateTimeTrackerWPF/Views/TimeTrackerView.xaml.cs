@@ -31,7 +31,8 @@ namespace FlatRateTimeTrackerWPF.Views
 
         private void InitializeEvents( TimeTrackerViewModel vm )
         {
-
+            TestBuildTree.Click += vm.TestBuildEvent;
+            TestBuildJobs.Click += vm.TestBuildJobsEvent;
         }
     }
 }

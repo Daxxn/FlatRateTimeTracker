@@ -4,9 +4,49 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlatRateTimeTrackerWPF.Views"
-             mc:Ignorable="d" Background="Red"
+             mc:Ignorable="d" Background="Wheat"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<Border Grid.Column="0">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<TextBlock>Test Window</TextBlock>
+				<Button x:Name="TestBuildTree" Grid.Row="1" Grid.Column="0">Test Build Tree</Button>
+				<Button x:Name="TestBuildJobs" Grid.Row="2" Grid.Column="0">Test Build Jobs</Button>
+			</Grid>
+		</Border>
+
+		<Border Grid.Column="1">
+			<TreeView ItemsSource="{Binding Path=TimeController.Data}">
+				<TreeViewItem Header="Day">
+					<TreeViewItem.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Path=Date}"/>
+						</DataTemplate>
+					</TreeViewItem.ItemTemplate>
+					<TreeViewItem >
+						<TreeViewItem.ItemTemplate>
+							<DataTemplate>
+								<!--<TextBlock Text="{Binding Path=Type}"/>-->
+							</DataTemplate>
+						</TreeViewItem.ItemTemplate>
+					</TreeViewItem>
+				</TreeViewItem>
+			</TreeView>
+		</Border>
     </Grid>
 </UserControl>
