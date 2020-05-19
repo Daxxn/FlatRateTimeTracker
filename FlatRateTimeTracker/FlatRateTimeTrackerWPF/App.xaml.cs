@@ -14,11 +14,9 @@ namespace FlatRateTimeTrackerWPF
     /// </summary>
     public partial class App : Application
     {
-        public static MainViewModel MainVM { get; set; }
         protected override void OnStartup(StartupEventArgs e)
         {
-            MainVM = new MainViewModel();
-            MainWindow main = new MainWindow(MainVM);
+            MainWindow main = new MainWindow(MainWindowViewModel.Instance);
             base.OnStartup(e);
             main.Show();
         }

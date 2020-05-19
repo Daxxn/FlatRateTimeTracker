@@ -13,7 +13,7 @@ using ModelLibrary;
 
 namespace FlatRateTimeTrackerWPF.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class JobTrackerViewModel : ViewModelBase
     {
         #region - Fields
         private Timer Timer { get; set; }
@@ -24,7 +24,7 @@ namespace FlatRateTimeTrackerWPF.ViewModels
         #endregion
 
         #region - Constructors
-        public MainViewModel()
+        public JobTrackerViewModel()
         {
             JobController = new JobController();
             BuildTimer();

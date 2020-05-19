@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FlatRateTimeTrackerWPF.ViewModels;
+using FlatRateTimeTrackerWPF.Views;
 using ModelLibrary;
 
 namespace FlatRateTimeTrackerWPF
@@ -22,24 +23,27 @@ namespace FlatRateTimeTrackerWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(MainViewModel vm)
+        public MainWindow(MainWindowViewModel vm)
         {
             InitializeComponent();
             DataContext = vm;
-            JobTypeComboBox.ItemsSource = Enum.GetNames(typeof(JobType));
             InitializeEvents(vm);
         }
 
-        private void InitializeEvents(MainViewModel vm)
+        private void InitializeEvents( MainWindowViewModel vm )
         {
-            StartJobButton.Click += vm.StartJobClickEvent;
-            JobTypeComboBox.SelectionChanged += vm.JobTypeSelectionEvent;
         }
 
-        private void StartJob_KeyUp( object sender, KeyEventArgs e)
+        private void TabControl_SelectionChanged( object sender, SelectionChangedEventArgs e )
         {
-            var vm = DataContext as MainViewModel;
-            vm.StartJobKeyEvent(sender, e);
+            if (TC.SelectedIndex == 0)
+            {
+                JobTrackerTab.Content = new JobTrackerView(MainWindowViewModel.Instance.JobTrackerVM);
+            }
+            else if (TC.SelectedIndex == 1)
+            {
+                TimeTrackerTab.Content = new TimeTrackerView(MainWindowViewModel.Instance.TimeTrackerVM);
+            }
         }
     }
 }
