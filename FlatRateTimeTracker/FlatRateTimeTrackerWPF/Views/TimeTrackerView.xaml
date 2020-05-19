@@ -31,20 +31,25 @@
 		</Border>
 
 		<Border Grid.Column="1">
-			<TreeView ItemsSource="{Binding Path=TimeController.Data}">
-				<TreeViewItem Header="Day">
+			<TreeView >
+				<TreeViewItem Header="Day" ItemsSource="{Binding Path=TimeController.Data}">
 					<TreeViewItem.ItemTemplate>
 						<DataTemplate>
-							<TextBlock Text="{Binding Path=Date}"/>
+							<StackPanel Orientation="Vertical">
+								<TextBlock Text="{Binding Path=Date}"/>
+								<TreeViewItem Header="Jobs" ItemsSource="{Binding Path=Jobs}">
+									<TreeViewItem.ItemTemplate>
+										<DataTemplate>
+											<StackPanel Orientation="Vertical">
+												<TextBlock Text="{Binding Path=Type}"/>
+												<TextBlock Text="{Binding Path=FlaggedHours}"/>
+											</StackPanel>
+										</DataTemplate>
+									</TreeViewItem.ItemTemplate>
+								</TreeViewItem>
+							</StackPanel>
 						</DataTemplate>
 					</TreeViewItem.ItemTemplate>
-					<TreeViewItem >
-						<TreeViewItem.ItemTemplate>
-							<DataTemplate>
-								<!--<TextBlock Text="{Binding Path=Type}"/>-->
-							</DataTemplate>
-						</TreeViewItem.ItemTemplate>
-					</TreeViewItem>
 				</TreeViewItem>
 			</TreeView>
 		</Border>

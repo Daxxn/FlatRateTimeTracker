@@ -26,16 +26,13 @@ namespace ModelLibrary.TimeTrackerModels
 			// TESTING
 			Data = new ObservableCollection<DayModel>()
 			{
-				new DayModel
-				{
-					Date = new DateTime(2020, 5, 15)
-				}
+				new DayModel()
 			};
 		}
 
 		public void BuildJobs( )
 		{
-			Data[ 0 ].Jobs = new ObservableCollection<TimeModel>()
+			Data[ 0 ].Jobs = new List<TimeModel>()
 			{
 				new TimeModel
 				{
