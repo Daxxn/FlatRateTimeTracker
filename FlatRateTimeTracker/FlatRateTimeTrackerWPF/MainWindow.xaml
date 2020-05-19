@@ -32,7 +32,6 @@
 				Start Job
 			</Button>
 			<ComboBox x:Name="JobTypeComboBox"
-					
 					Grid.Column="0" Grid.Row="2"
 			/>
 		</Grid>
@@ -44,13 +43,22 @@
 					<ColumnDefinition Width="Auto"/>
 				</Grid.ColumnDefinitions>
 
-				<DataGrid x:Name="JobDisplay"
+				<DataGrid
 						ItemsSource="{Binding
 								Path=JobController.AllJobs,
-								Mode=OneWay,
-								UpdateSourceTrigger=PropertyChanged}"
-						AutoGenerateColumns="True"
-				/>
+								Mode=Default,
+								UpdateSourceTrigger=PropertyChanged,
+								NotifyOnSourceUpdated=True}"
+						SelectedItem="{Binding Path=JobController.SelectedJob}"
+						AutoGenerateColumns="False"
+				>
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Job" Binding="{Binding Path=JobType}"/>
+						<DataGridTextColumn Header="Job Time" Binding="{Binding Path=JobTimeDisplay}"/>
+						<DataGridTextColumn Header="Start" Binding="{Binding Path=StartTimeDisplay}"/>
+						<DataGridTextColumn Header="End" Binding="{Binding Path=EndTimeDisplay}"/>
+					</DataGrid.Columns>
+				</DataGrid>
 				
 				<Grid Grid.Column="1">
 					<Grid.ColumnDefinitions>

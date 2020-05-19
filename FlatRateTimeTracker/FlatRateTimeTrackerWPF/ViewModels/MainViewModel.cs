@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using ModelLibrary;
 
@@ -15,8 +18,9 @@ namespace FlatRateTimeTrackerWPF.ViewModels
         #region - Fields
         private Timer Timer { get; set; }
         private TimeSpan _jobTimer;
+        public bool timerState { get; set; }
         private JobController _jobController;
-        private int _selectedJobType;
+        private JobType _selectedJobType;
         #endregion
 
         #region - Constructors
@@ -43,6 +47,19 @@ namespace FlatRateTimeTrackerWPF.ViewModels
             }
         }
 
+        public void JobTypeSelectionEvent( object sender, SelectionChangedEventArgs e )
+        {
+            if (e.AddedItems != null && e.AddedItems.Count > 0)
+            {
+                bool success = Enum.TryParse(e.AddedItems[ 0 ].ToString(), out JobType tempType);
+
+                if (success)
+                {
+                    SelectedJobType = tempType;
+                }
+            }
+        }
+
         private void BuildTimer( int interval = 1000 )
         {
             Timer = new Timer(interval)
@@ -54,7 +71,15 @@ namespace FlatRateTimeTrackerWPF.ViewModels
 
         public DateTime StartTimer( )
         {
-            Timer.Start();
+            if (timerState)
+            {
+                Timer.Stop();
+            }
+            else
+            {
+                Timer.Start();
+            }
+            timerState = !timerState;
             return DateTime.Now;
         }
 
@@ -75,11 +100,6 @@ namespace FlatRateTimeTrackerWPF.ViewModels
             }
         }
 
-        public string JobTimerDisplay
-        {
-            get { return JobTimer.ToString("c");  }
-        }
-
         public JobController JobController
         {
             get { return _jobController; }
@@ -90,21 +110,12 @@ namespace FlatRateTimeTrackerWPF.ViewModels
             }
         }
 
-        public int SelectedJobIndex
+        public JobType SelectedJobType
         {
             get { return _selectedJobType; }
             set
             {
                 _selectedJobType = value;
-                OnPropertyChanged(nameof(SelectedJobIndex));
-            }
-        }
-
-        public JobType SelectedJobType
-        {
-            get
-            {
-                return (JobType)SelectedJobIndex;
             }
         }
         #endregion

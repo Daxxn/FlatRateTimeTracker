@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -12,14 +13,22 @@ namespace ModelLibrary
     public class JobController : ModelBase
     {
         #region - Fields
-        private List<JobModel> _allJobs;
+        private ObservableCollection<JobModel> _allJobs;
         private JobModel _currentJob;
         #endregion
 
         #region - Constructors
         public JobController( )
         {
-            AllJobs = new List<JobModel>();
+            AllJobs = new ObservableCollection<JobModel>()
+            {
+                new JobModel()
+                {
+                    Type = JobType.Replace1Tire,
+                    StartTime = DateTime.Now,
+                    EndTime = DateTime.Now.AddMinutes(30)
+                }
+            };
         }
         #endregion
 
@@ -89,7 +98,7 @@ namespace ModelLibrary
             }
         }
 
-        public List<JobModel> AllJobs
+        public ObservableCollection<JobModel> AllJobs
         {
             get { return _allJobs; }
             set

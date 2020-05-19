@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ModelLibrary
 {
-    public class JobModel /*: ModelBase*/
+    public class JobModel : ModelBase
     {
         #region - Fields
         public JobType _type;
@@ -20,7 +20,15 @@ namespace ModelLibrary
         #endregion
 
         #region - Methods
+        private string TimeToString( TimeSpan time )
+        {
+            return $"{time.Hours}:{time.Minutes}:{time.Seconds}";
+        }
 
+        private string TimeToString( DateTime time )
+        {
+            return $"{time.Month}/{time.Day}/{time.Year} {(time.Hour > 12 ? time.Hour - 12 : time.Hour)}:{time.Minute}:{time.Second}";
+        }
         #endregion
 
         #region - Properties
@@ -28,7 +36,15 @@ namespace ModelLibrary
         {
             get
             {
-                return StartTime - EndTime;
+                return EndTime - StartTime;
+            }
+        }
+
+        public string JobTimeDisplay
+        {
+            get
+            {
+                return TimeToString(JobTime);
             }
         }
 
@@ -38,7 +54,7 @@ namespace ModelLibrary
             set
             {
                 _type = value;
-                //OnPropertyChanged(nameof(Type));
+                OnPropertyChanged(nameof(Type));
             }
         }
 
@@ -48,7 +64,15 @@ namespace ModelLibrary
             set
             {
                 _startTime = value;
-                //OnPropertyChanged(nameof(StartTime));
+                OnPropertyChanged(nameof(StartTime));
+            }
+        }
+
+        public string StartTimeDisplay
+        {
+            get 
+            {
+                return TimeToString(StartTime);
             }
         }
 
@@ -58,7 +82,15 @@ namespace ModelLibrary
             set
             {
                 _endTime = value;
-                //OnPropertyChanged(nameof(EndTime));
+                OnPropertyChanged(nameof(EndTime));
+            }
+        }
+
+        public string EndTimeDisplay
+        {
+            get
+            {
+                return TimeToString(EndTime);
             }
         }
         #endregion
