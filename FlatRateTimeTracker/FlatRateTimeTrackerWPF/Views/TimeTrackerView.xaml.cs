@@ -34,5 +34,10 @@ namespace FlatRateTimeTrackerWPF.Views
             TestBuildTree.Click += vm.TestBuildEvent;
             TestBuildJobs.Click += vm.TestBuildJobsEvent;
         }
+
+        private void AddJob_Click( object sender, RoutedEventArgs e )
+        {
+
+        }
     }
 }

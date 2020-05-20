@@ -31,22 +31,44 @@
 		</Border>
 
 		<Border Grid.Column="1">
-			<TreeView >
+			<TreeView Grid.IsSharedSizeScope="True">
 				<TreeViewItem Header="Day" ItemsSource="{Binding Path=TimeController.Data}">
 					<TreeViewItem.ItemTemplate>
 						<DataTemplate>
 							<StackPanel Orientation="Vertical">
 								<TextBlock Text="{Binding Path=Date}"/>
-								<TreeViewItem Header="Jobs" ItemsSource="{Binding Path=Jobs}">
-									<TreeViewItem.ItemTemplate>
-										<DataTemplate>
-											<StackPanel Orientation="Vertical">
-												<TextBlock Text="{Binding Path=Type}"/>
-												<TextBlock Text="{Binding Path=FlaggedHours}"/>
-											</StackPanel>
-										</DataTemplate>
-									</TreeViewItem.ItemTemplate>
-								</TreeViewItem>
+								<StackPanel Orientation="Vertical">
+									<TreeViewItem Header="Jobs" ItemsSource="{Binding Path=Jobs}">
+										<TreeViewItem.ItemTemplate>
+											<DataTemplate>
+												<Border Style="{StaticResource TT_Job_Border}">
+													<Grid>
+														<Grid.ColumnDefinitions>
+															<ColumnDefinition SharedSizeGroup="Titles"/>
+															<ColumnDefinition SharedSizeGroup="Values"/>
+														</Grid.ColumnDefinitions>
+														<Grid.RowDefinitions>
+															<RowDefinition Height="Auto"/>
+															<RowDefinition Height="Auto"/>
+															<RowDefinition Height="Auto"/>
+															<RowDefinition Height="Auto"/>
+															<RowDefinition Height="Auto"/>
+														</Grid.RowDefinitions>
+														<TextBlock Grid.Row="0">Job Type</TextBlock>
+														<TextBox Text="{Binding Path=Type}" Grid.Row="0" Grid.Column="1"/>
+														<TextBlock Grid.Row="1">RO Num</TextBlock>
+														<TextBox Text="{Binding Path=RONumber}" Grid.Row="1" Grid.Column="1"/>
+														<TextBlock Grid.Row="2">Hours</TextBlock>
+														<TextBox Text="{Binding Path=FlaggedHours}" Grid.Row="2" Grid.Column="1"/>
+														<TextBlock Grid.Row="3">Time</TextBlock>
+														<TextBox Text="{Binding Path=OutTime}" Grid.Row="3" Grid.Column="1"/>
+													</Grid>
+												</Border>
+											</DataTemplate>
+										</TreeViewItem.ItemTemplate>
+									</TreeViewItem>
+									<Button Click="AddJob_Click">Add Job</Button>
+								</StackPanel>
 							</StackPanel>
 						</DataTemplate>
 					</TreeViewItem.ItemTemplate>

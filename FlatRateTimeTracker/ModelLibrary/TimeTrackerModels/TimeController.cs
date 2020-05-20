@@ -27,6 +27,33 @@ namespace ModelLibrary.TimeTrackerModels
 			Data = new ObservableCollection<DayModel>()
 			{
 				new DayModel()
+                {
+					Date = DateTime.Now,
+					Jobs = new List<TimeModel>()
+					{
+						new TimeModel
+						{
+							OutTime = new DateTime(2020, 5, 15, 8, 30, 0),
+							Type = JobType.MinorOilChange,
+							FlaggedHours = 0.5m,
+							RONumber = 441602,
+						},
+						new TimeModel
+						{
+							OutTime = new DateTime(2020, 5, 15, 8, 30, 0),
+							Type = JobType.MinorOilChange,
+							FlaggedHours = 0.5m,
+							RONumber = 441610,
+						},
+						new TimeModel
+						{
+							OutTime = new DateTime(2020, 5, 15, 9, 0, 0),
+							Type = JobType.MinorOilChange,
+							FlaggedHours = 0.5m,
+							RONumber = 441612,
+						}
+					}
+				}
 			};
 		}
 
