@@ -17,10 +17,15 @@ namespace ModelLibrary.TimeTrackerModels
 		#region - Constructors
 		public TimeController( )
 		{
+			Data = new ObservableCollection<DayModel>();
 		}
 		#endregion
 
 		#region - Methods
+		/// <summary>
+		/// ONLY FOR TESTING! Needs to be removed when the actual data construction 
+		/// is completed.
+		/// </summary>
 		public void TestBuild( )
 		{
 			// TESTING
@@ -29,7 +34,7 @@ namespace ModelLibrary.TimeTrackerModels
 				new DayModel()
                 {
 					Date = DateTime.Now,
-					Jobs = new List<TimeModel>()
+					Jobs = new ObservableCollection<TimeModel>()
 					{
 						new TimeModel
 						{
@@ -57,33 +62,10 @@ namespace ModelLibrary.TimeTrackerModels
 			};
 		}
 
-		public void BuildJobs( )
-		{
-			Data[ 0 ].Jobs = new List<TimeModel>()
-			{
-				new TimeModel
-				{
-					OutTime = new DateTime(2020, 5, 15, 8, 30, 0),
-					Type = JobType.MinorOilChange,
-					FlaggedHours = 0.5m,
-					RONumber = 441602,
-				},
-				new TimeModel
-				{
-					OutTime = new DateTime(2020, 5, 15, 8, 30, 0),
-					Type = JobType.MinorOilChange,
-					FlaggedHours = 0.5m,
-					RONumber = 441610,
-				},
-				new TimeModel
-				{
-					OutTime = new DateTime(2020, 5, 15, 9, 0, 0),
-					Type = JobType.MinorOilChange,
-					FlaggedHours = 0.5m,
-					RONumber = 441612,
-				}
-			};
-		}
+        public void AddDay( )
+        {
+			Data.Add(new DayModel());
+        }
 		#endregion
 
 		#region - Full Properties

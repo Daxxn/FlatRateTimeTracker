@@ -11,11 +11,14 @@ namespace ModelLibrary.TimeTrackerModels
 	{
 		#region - Fields & Properties
 		private DateTime _date;
-		private List<TimeModel> _jobs;
+		private ObservableCollection<TimeModel> _jobs;
 		#endregion
 
 		#region - Constructors
-		public DayModel( ) { }
+		public DayModel( )
+        {
+			Jobs = new ObservableCollection<TimeModel>();
+        }
 		#endregion
 
 		#region - Methods
@@ -33,7 +36,7 @@ namespace ModelLibrary.TimeTrackerModels
 			}
 		}
 
-		public List<TimeModel> Jobs
+		public ObservableCollection<TimeModel> Jobs
 		{
 			get { return _jobs; }
 			set

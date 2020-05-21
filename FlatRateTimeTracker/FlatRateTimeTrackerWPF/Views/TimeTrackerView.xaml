@@ -14,10 +14,6 @@
 
 		<Border Grid.Column="0">
 			<Grid>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition Width="*"/>
-				</Grid.ColumnDefinitions>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
@@ -25,54 +21,90 @@
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
 				<TextBlock>Test Window</TextBlock>
-				<Button x:Name="TestBuildTree" Grid.Row="1" Grid.Column="0">Test Build Tree</Button>
-				<Button x:Name="TestBuildJobs" Grid.Row="2" Grid.Column="0">Test Build Jobs</Button>
+				<Button x:Name="TestBuildTree" Grid.Row="1">Build Test Tree</Button>
+
+				<Border Grid.Row="2" Margin="0,10,0,0">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="Auto"/>
+						</Grid.ColumnDefinitions>
+						<!--<Button x:Name="AddDayButton">Add Day</Button>
+						<Button x:Name="AddJobButton" Grid.Column="1">Add Job</Button>-->
+					</Grid>
+				</Border>
+
+				<Border Grid.Row="3" Margin="0,10,0,0">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+
+						<TextBlock>File Control</TextBlock>
+
+						<Grid Grid.Row="1">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
+							<TextBlock>Open File Path</TextBlock>
+							<TextBox Text="{Binding Path=OpenPath}" Grid.Row="1"/>
+							<Button x:Name="OpenFileButton" Grid.Row="2">Open File</Button>
+						</Grid>
+					</Grid>
+				</Border>
 			</Grid>
 		</Border>
 
 		<Border Grid.Column="1">
 			<TreeView Grid.IsSharedSizeScope="True">
-				<TreeViewItem Header="Day" ItemsSource="{Binding Path=TimeController.Data}">
-					<TreeViewItem.ItemTemplate>
-						<DataTemplate>
-							<StackPanel Orientation="Vertical">
-								<TextBlock Text="{Binding Path=Date}"/>
+				<StackPanel Orientation="Vertical">
+					<TreeViewItem Header="Day" ItemsSource="{Binding Path=TimeController.Data}">
+						<TreeViewItem.ItemTemplate>
+							<DataTemplate>
 								<StackPanel Orientation="Vertical">
-									<TreeViewItem Header="Jobs" ItemsSource="{Binding Path=Jobs}">
-										<TreeViewItem.ItemTemplate>
-											<DataTemplate>
-												<Border Style="{StaticResource TT_Job_Border}">
-													<Grid>
-														<Grid.ColumnDefinitions>
-															<ColumnDefinition SharedSizeGroup="Titles"/>
-															<ColumnDefinition SharedSizeGroup="Values"/>
-														</Grid.ColumnDefinitions>
-														<Grid.RowDefinitions>
-															<RowDefinition Height="Auto"/>
-															<RowDefinition Height="Auto"/>
-															<RowDefinition Height="Auto"/>
-															<RowDefinition Height="Auto"/>
-															<RowDefinition Height="Auto"/>
-														</Grid.RowDefinitions>
-														<TextBlock Grid.Row="0">Job Type</TextBlock>
-														<TextBox Text="{Binding Path=Type}" Grid.Row="0" Grid.Column="1"/>
-														<TextBlock Grid.Row="1">RO Num</TextBlock>
-														<TextBox Text="{Binding Path=RONumber}" Grid.Row="1" Grid.Column="1"/>
-														<TextBlock Grid.Row="2">Hours</TextBlock>
-														<TextBox Text="{Binding Path=FlaggedHours}" Grid.Row="2" Grid.Column="1"/>
-														<TextBlock Grid.Row="3">Time</TextBlock>
-														<TextBox Text="{Binding Path=OutTime}" Grid.Row="3" Grid.Column="1"/>
-													</Grid>
-												</Border>
-											</DataTemplate>
-										</TreeViewItem.ItemTemplate>
-									</TreeViewItem>
-									<Button Click="AddJob_Click">Add Job</Button>
+									<TextBlock Text="{Binding Path=Date}"/>
+									<StackPanel Orientation="Vertical">
+										<TreeViewItem Header="Jobs" ItemsSource="{Binding Path=Jobs}">
+											<TreeViewItem.ItemTemplate>
+												<DataTemplate>
+													<Border Style="{StaticResource TT_Job_Border}">
+														<Grid>
+															<Grid.ColumnDefinitions>
+																<ColumnDefinition SharedSizeGroup="Titles"/>
+																<ColumnDefinition SharedSizeGroup="Values"/>
+															</Grid.ColumnDefinitions>
+															<Grid.RowDefinitions>
+																<RowDefinition Height="Auto"/>
+																<RowDefinition Height="Auto"/>
+																<RowDefinition Height="Auto"/>
+																<RowDefinition Height="Auto"/>
+																<RowDefinition Height="Auto"/>
+															</Grid.RowDefinitions>
+															<TextBlock Grid.Row="0">Job Type</TextBlock>
+															<TextBox Text="{Binding Path=Type}" Grid.Row="0" Grid.Column="1"/>
+															<TextBlock Grid.Row="1">RO Num</TextBlock>
+															<TextBox Text="{Binding Path=RONumber}" Grid.Row="1" Grid.Column="1"/>
+															<TextBlock Grid.Row="2">Hours</TextBlock>
+															<TextBox Text="{Binding Path=FlaggedHours}" Grid.Row="2" Grid.Column="1"/>
+															<TextBlock Grid.Row="3">Time</TextBlock>
+															<TextBox Text="{Binding Path=OutTime}" Grid.Row="3" Grid.Column="1"/>
+														</Grid>
+													</Border>
+												</DataTemplate>
+											</TreeViewItem.ItemTemplate>
+										</TreeViewItem>
+										<Button Click="AddJob_Click">Add Job</Button>
+									</StackPanel>
 								</StackPanel>
-							</StackPanel>
-						</DataTemplate>
-					</TreeViewItem.ItemTemplate>
-				</TreeViewItem>
+							</DataTemplate>
+						</TreeViewItem.ItemTemplate>
+					</TreeViewItem>
+					<Button x:Name="AddDayButton" Click="AddDay_Click">Add Day</Button>
+				</StackPanel>
 			</TreeView>
 		</Border>
     </Grid>

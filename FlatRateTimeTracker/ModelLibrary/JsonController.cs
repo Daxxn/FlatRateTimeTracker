@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace ModelLibrary
@@ -36,6 +32,26 @@ namespace ModelLibrary
 				throw new FileNotFoundException("Couldnt find the file.");
 			}
 		}
+
+        public static void SaveJsonFile<T>( string savePath, T data ) where T : class
+        {
+            try
+            {
+				using(StreamWriter writer = new StreamWriter(savePath))
+                {
+					var settings = new JsonSerializerSettings
+					{
+						DateFormatHandling = DateFormatHandling.IsoDateFormat,
+						Formatting = Formatting.Indented
+					};
+					writer.Write(JsonConvert.SerializeObject(data, settings));
+                }
+            }
+            catch (Exception e)
+            {
+				throw e;
+            }
+        }
 		#endregion
 
 		#region - Full Properties
