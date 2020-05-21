@@ -35,7 +35,8 @@ namespace FlatRateTimeTrackerWPF.Views
             OpenFileButton.Click += vm.OpenFileEvent;
             SaveFileButton.Click += vm.SaveFileEvent;
             SaveFileTestButton.Click += vm.SaveFileTestEvent;
-            //TimeTreeViewer.SelectedItemChanged += vm.SelectedItemEvent;
+            AddROsButton.Click += vm.AddROsEvent;
+            AddROsButton.Click += AddROsEvent;
         }
 
         private void AddJob_Click( object sender, RoutedEventArgs e )
@@ -72,6 +73,13 @@ namespace FlatRateTimeTrackerWPF.Views
         {
             var vm = DataContext as TimeTrackerViewModel;
             vm.AdjustJobIndex((sender as Button).Name);
+        }
+
+        private void AddROsEvent( object sender, RoutedEventArgs e )
+        {
+            var vm = DataContext as TimeTrackerViewModel;
+            var addROsWindow = new AddROsWindow(vm.AddROsVM);
+            addROsWindow.Show();
         }
     }
 }

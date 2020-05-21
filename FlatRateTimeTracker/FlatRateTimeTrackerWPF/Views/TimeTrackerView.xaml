@@ -48,6 +48,12 @@
 						</Grid>
 					</Grid>
 				</Border>
+
+				<Border Grid.Row="3">
+					<StackPanel Orientation="Vertical">
+						<Button x:Name="AddROsButton">Add Multiple ROs</Button>
+					</StackPanel>
+				</Border>
 			</Grid>
 		</Border>
 

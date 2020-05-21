@@ -55,10 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\AddROsViewModel.cs" />
     <Compile Include="ViewModels\JobTrackerViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\TimeTrackerViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\AddROsWindow.xaml.cs">
+      <DependentUpon>AddROsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\JobTrackerView.xaml.cs">
       <DependentUpon>JobTrackerView.xaml</DependentUpon>
     </Compile>
@@ -82,6 +86,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StylesAndColors\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddROsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

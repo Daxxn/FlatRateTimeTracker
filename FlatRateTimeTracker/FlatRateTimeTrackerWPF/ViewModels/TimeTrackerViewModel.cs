@@ -15,8 +15,10 @@ namespace FlatRateTimeTrackerWPF.ViewModels
 {
     public class TimeTrackerViewModel : ViewModelBase
 	{
-		#region - Fields & Properties
-		private TimeController _timeController;
+        #region - Fields & Properties
+        private AddROsViewModel _addROsVM;
+
+        private TimeController _timeController;
 
         private string _path;
 
@@ -91,6 +93,11 @@ namespace FlatRateTimeTrackerWPF.ViewModels
             }
         }
 
+        public void AddROsEvent( object sender, RoutedEventArgs e )
+        {
+            AddROsVM = new AddROsViewModel();
+        }
+
         public void AddDayEvent( object sender, RoutedEventArgs e )
         {
 			TimeController.AddDay();
@@ -138,9 +145,17 @@ namespace FlatRateTimeTrackerWPF.ViewModels
                 JobIndex = JobIndex > 0 ? JobIndex - 1 : JobIndex;
             }
         }
-		#endregion
+        #endregion
 
-		#region - Full Properties
+        #region - Full Properties
+        public AddROsViewModel AddROsVM
+        {
+            get { return _addROsVM; }
+            set
+            {
+                _addROsVM = value;
+            }
+        }
 		public TimeController TimeController
 		{
 			get { return _timeController; }
