@@ -32,9 +32,10 @@ namespace FlatRateTimeTrackerWPF.Views
         private void InitializeEvents( TimeTrackerViewModel vm )
         {
             TestBuildTree.Click += vm.TestBuildEvent;
-            //AddDayButton.Click += vm.AddDayEvent;
-            //AddJobButton.Click += vm.AddJobEvent;
-
+            OpenFileButton.Click += vm.OpenFileEvent;
+            SaveFileButton.Click += vm.SaveFileEvent;
+            SaveFileTestButton.Click += vm.SaveFileTestEvent;
+            //TimeTreeViewer.SelectedItemChanged += vm.SelectedItemEvent;
         }
 
         private void AddJob_Click( object sender, RoutedEventArgs e )
@@ -47,6 +48,30 @@ namespace FlatRateTimeTrackerWPF.Views
         {
             var vm = DataContext as TimeTrackerViewModel;
             vm.AddDayEvent(sender, e);
+        }
+
+        private void DelDay_Click( object sender, RoutedEventArgs e )
+        {
+            var vm = DataContext as TimeTrackerViewModel;
+            vm.DeleteDayEvent(sender, e);
+        }
+
+        private void DelJob_Click( object sender, RoutedEventArgs e )
+        {
+            var vm = DataContext as TimeTrackerViewModel;
+            vm.DeleteJobEvent(sender, e);
+        }
+
+        private void DayIndex_Click( object sender, RoutedEventArgs e )
+        {
+            var vm = DataContext as TimeTrackerViewModel;
+            vm.AdjustDayIndex((sender as Button).Name);
+        }
+
+        private void JobIndex_Click( object sender, RoutedEventArgs e )
+        {
+            var vm = DataContext as TimeTrackerViewModel;
+            vm.AdjustJobIndex((sender as Button).Name);
         }
     }
 }

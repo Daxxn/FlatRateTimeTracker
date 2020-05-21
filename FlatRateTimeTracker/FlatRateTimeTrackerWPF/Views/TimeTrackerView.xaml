@@ -25,17 +25,6 @@
 
 				<Border Grid.Row="2" Margin="0,10,0,0">
 					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto"/>
-							<ColumnDefinition Width="Auto"/>
-						</Grid.ColumnDefinitions>
-						<!--<Button x:Name="AddDayButton">Add Day</Button>
-						<Button x:Name="AddJobButton" Grid.Column="1">Add Job</Button>-->
-					</Grid>
-				</Border>
-
-				<Border Grid.Row="3" Margin="0,10,0,0">
-					<Grid>
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto"/>
 							<RowDefinition Height="Auto"/>
@@ -49,10 +38,13 @@
 								<RowDefinition Height="Auto"/>
 								<RowDefinition Height="Auto"/>
 								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
 							</Grid.RowDefinitions>
 							<TextBlock>Open File Path</TextBlock>
-							<TextBox Text="{Binding Path=OpenPath}" Grid.Row="1"/>
+							<TextBox Text="{Binding Path=FilePath}" Grid.Row="1"/>
 							<Button x:Name="OpenFileButton" Grid.Row="2">Open File</Button>
+							<Button x:Name="SaveFileButton" Grid.Row="3">Save File</Button>
+							<Button x:Name="SaveFileTestButton" Grid.Row="4">Save Test</Button>
 						</Grid>
 					</Grid>
 				</Border>
@@ -60,7 +52,7 @@
 		</Border>
 
 		<Border Grid.Column="1">
-			<TreeView Grid.IsSharedSizeScope="True">
+			<TreeView Grid.IsSharedSizeScope="True" x:Name="TimeTreeViewer">
 				<StackPanel Orientation="Vertical">
 					<TreeViewItem Header="Day" ItemsSource="{Binding Path=TimeController.Data}">
 						<TreeViewItem.ItemTemplate>
@@ -97,13 +89,33 @@
 												</DataTemplate>
 											</TreeViewItem.ItemTemplate>
 										</TreeViewItem>
-										<Button Click="AddJob_Click">Add Job</Button>
+										<StackPanel Orientation="Horizontal">
+											<Button Click="AddJob_Click">Add Job</Button>
+										</StackPanel>
 									</StackPanel>
 								</StackPanel>
 							</DataTemplate>
 						</TreeViewItem.ItemTemplate>
 					</TreeViewItem>
-					<Button x:Name="AddDayButton" Click="AddDay_Click">Add Day</Button>
+					<StackPanel Orientation="Horizontal">
+						<Button Click="AddDay_Click" Margin="0,0,20,0">Add Day</Button>
+						<Button Click="DelDay_Click">Del Day</Button>
+						<StackPanel Orientation="Horizontal">
+							<TextBox Text="{Binding Path=DayIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MinWidth="10" MaxLength="3"/>
+							<StackPanel Orientation="Vertical">
+								<Button x:Name="DayUp" Click="DayIndex_Click" FontSize="7">/\</Button>
+								<Button x:Name="DayDown" Click="DayIndex_Click" FontSize="7">\/</Button>
+							</StackPanel>
+						</StackPanel>
+						<Button Click="DelJob_Click">Del Job</Button>
+						<StackPanel Orientation="Horizontal">
+							<TextBox Text="{Binding Path=JobIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MinWidth="10" MaxLength="3"/>
+							<StackPanel Orientation="Vertical">
+								<Button x:Name="JobUp" Click="JobIndex_Click" FontSize="7">/\</Button>
+								<Button x:Name="JobDown" Click="JobIndex_Click" FontSize="7">\/</Button>
+							</StackPanel>
+						</StackPanel>
+					</StackPanel>
 				</StackPanel>
 			</TreeView>
 		</Border>

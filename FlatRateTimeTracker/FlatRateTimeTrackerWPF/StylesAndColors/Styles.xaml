@@ -4,5 +4,6 @@
 		<Setter Property="BorderBrush" Value="{StaticResource TT_JobBorderBrush}"/>
 		<Setter Property="BorderThickness" Value="1"/>
 		<Setter Property="Background" Value="{StaticResource TT_JobBackgroundColor}"/>
+		<Setter Property="Margin" Value="10"/>
 	</Style>
 </ResourceDictionary>

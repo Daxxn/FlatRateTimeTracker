@@ -51,6 +51,7 @@
     <Compile Include="ModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeTrackerModels\DayModel.cs" />
+    <Compile Include="TimeTrackerModels\FileModel.cs" />
     <Compile Include="TimeTrackerModels\TimeController.cs" />
     <Compile Include="TimeTrackerModels\TimeModel.cs" />
   </ItemGroup>

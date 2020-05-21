@@ -9,23 +9,33 @@ namespace ModelLibrary.TimeTrackerModels
 {
     public class DayModel : ModelBase
 	{
-		#region - Fields & Properties
-		private DateTime _date;
+        #region - Fields & Properties
+        private int _Index;
+        private DateTime _date;
 		private ObservableCollection<TimeModel> _jobs;
-		#endregion
+        #endregion
 
-		#region - Constructors
-		public DayModel( )
+        #region - Constructors
+        public DayModel( )
         {
 			Jobs = new ObservableCollection<TimeModel>();
         }
-		#endregion
+        #endregion
 
-		#region - Methods
+        #region - Methods
 
-		#endregion
+        #endregion
 
-		#region - Full Properties
+        #region - Full Properties
+        public int Index
+        {
+            get { return _Index; }
+            set
+            {
+                _Index = value;
+				OnPropertyChanged(nameof(Index));
+            }
+        }
 		public DateTime Date
 		{
 			get { return _date; }

@@ -52,6 +52,23 @@ namespace ModelLibrary
 				throw e;
             }
         }
+
+        public static string SaveJsonFileTest<T>( T data ) where T : class
+        {
+			try
+			{
+				var settings = new JsonSerializerSettings
+				{
+					DateFormatHandling = DateFormatHandling.IsoDateFormat,
+					Formatting = Formatting.Indented
+				};
+				return JsonConvert.SerializeObject(data, settings);
+			}
+			catch (Exception e)
+			{
+				throw e;
+			}
+		}
 		#endregion
 
 		#region - Full Properties

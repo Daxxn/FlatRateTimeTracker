@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Runtime.Remoting;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,6 +67,44 @@ namespace ModelLibrary.TimeTrackerModels
         public void AddDay( )
         {
 			Data.Add(new DayModel());
+        }
+
+        public string DeleteItem(int dayIndex, int jobIndex )
+        {
+            try
+            {
+                Data.ElementAt(dayIndex).Jobs.RemoveAt(jobIndex);
+				return null;
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+		}
+
+        public string DeleteItem( int dayIndex )
+        {
+            try
+            {
+                Data.RemoveAt(dayIndex);
+				return null;
+            }
+            catch (Exception e)
+            {
+				return e.Message;
+            }
+        }
+
+        public void AssignIndexes( )
+        {
+            for (int i = 0; i < Data.Count; i++)
+            {
+				Data[ i ].Index = i;
+                for (int j = 0; j < Data[i].Jobs.Count; j++)
+                {
+					Data[ i ].Jobs[ j ].Index = j;
+                }
+            }
         }
 		#endregion
 

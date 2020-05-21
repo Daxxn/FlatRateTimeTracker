@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ModelLibrary.TimeTrackerModels
 {
-    public class TimeModel
-	{
+    /// <summary>
+    /// Probably dont need this class. Check Json output.
+    /// </summary>
+    public class FileModel : ModelBase
+    {
         #region - Fields & Properties
-        public int Index { get; set; }
-        public JobType Type { get; set; }
-		public int RONumber { get; set; }
-		public decimal FlaggedHours { get; set; }
-		public TimeSpan CompletionTime { get; set; }
-		public DateTime OutTime { get; set; }
+
         #endregion
 
         #region - Constructors
-        public TimeModel( ) { }
+        public FileModel( ) { }
         #endregion
 
         #region - Methods
@@ -28,6 +25,6 @@ namespace ModelLibrary.TimeTrackerModels
 
         #region - Full Properties
 
-		#endregion
-	}
+        #endregion
+    }
 }
